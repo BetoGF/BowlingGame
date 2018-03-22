@@ -2,6 +2,7 @@ import java.io.*;
 
 public class BowlingGame {
 
+
  public static void main(String[] args) throws IOException
  {
         final BowlingCalc game = new BowlingCalc();
@@ -9,6 +10,7 @@ public class BowlingGame {
         Player player = new Player();
         
        // The game begins!
+
        // The final frame is executed separately because of special scoring requirements.
         
         for (int i=0; i<9; i++) {
@@ -17,11 +19,13 @@ public class BowlingGame {
         	}
                 
         // Play final frame
+
        System.out.println("\nFinal Frame");
             game.bowlLastFrame(player, 9);                     
     }       
     
        //Print the Score         
+
        public void printScores(Player player) {
         
     	     System.out.println("total score is: " + player.checkPlayerScore());
