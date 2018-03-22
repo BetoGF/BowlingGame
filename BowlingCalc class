@@ -54,6 +54,80 @@ public class BowlingCalc{
     } // end bowlFrame method
     
     
+    /*
+    * Special system for scoring the last frame.
+    * Includes bonus Roll if the player got a strike or spare.
+    */
+    public void bowlLastFrame(Player player, int frame){
+        int totalScore = 0;
+        int bonusCounter = player.checkBonusCounter();
+        
+        
+        // First roll
+        System.out.println("Pins down for roll 1:");
+        int score = getScore(totalScore);
+        totalScore = totalScore + score;
+        player.setFirstRoll(frame, score);
+        
+        // Update player score
+        if (bonusCounter == 1 | bonusCounter == 2) {
+            player.setPlayerScore(score + score);
+            bonusCounter -= 1;
+        }
+        if (bonusCounter == 3) {
+            player.setPlayerScore(score + score + score);
+            bonusCounter -= 2;
+        }
+        else {
+            player.setPlayerScore(score);
+        }
+
+        // second roll - system for when player rolled strike on the first roll
+        if (totalScore == 10){ 
+            System.out.println("Strike!");
+            bonusCounter += 2;
+            System.out.println("Pins down for roll 2:");
+            score = getScore();
+            player.setSecondRoll(frame, score);
+            if (bonusCounter == 1 | bonusCounter == 2) {
+                player.setPlayerScore(score);
+                bonusCounter -= 1;
+            }
+            if (bonusCounter == 3) {
+                player.setPlayerScore(score + score);
+                bonusCounter -= 2;
+            }
+        }
+        // Second roll - system for when player did not rolled strike on the first roll
+        else {
+            System.out.println("Pins down for ball 2:");
+            score = getScore(totalScore);
+            player.setSecondRoll(frame, score);
+            totalScore = totalScore + score;
+            if (bonusCounter == 1 | bonusCounter == 2) {
+                player.setPlayerScore(score + score);
+                bonusCounter -= 1;
+            }
+            else {
+                player.setPlayerScore(score);
+            }
+        }
+        // bonus roll if player rolled strike or spare this frame  
+        if (totalScore == 10) {
+            
+            System.out.println("You earned a bonus roll! Enter score for bonus roll:");
+            score = getScore();
+            player.setBonusRoll(score);
+            if (score == 10) {
+                System.out.println("Strike!");
+            }
+            player.setPlayerScore(score);
+        }
+        
+        System.out.println("total score is " + player.checkPlayerScore());
+    }
+    
+       
   
   public int getScore(int totalScore) {
         
@@ -68,4 +142,26 @@ public class BowlingCalc{
         } 
        return tempScore;
     } 
+    
+    /*
+    * Gets the bowling scores for the bonus round
+    */
+    public int getScore() throws IOException{
+        boolean validScore = false;
+        int tempScore = 0;
+        while (validScore == false) {
+            String temp = new BufferedReader(new InputStreamReader(System.in)).readLine();
+            if (temp == null){
+                System.out.println("Please enter a number.");
+            }
+            tempScore = Integer.parseInt(temp);
+            if (tempScore < 0 | tempScore > 10){
+                System.out.println("Invalid number. Try again.");
+            }
+            else {
+                validScore = true;
+            }            
+        } 
+       return tempScore;
+    } // end GetScore method for bonus round
 }
