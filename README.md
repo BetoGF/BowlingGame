@@ -11,6 +11,7 @@ Then it will go into BowlingCalc to make the neccessary calculations and produce
 
 Finnaly, the BowlingGame class will show the score.
 
+-----------------------------------------------
 
 Final edit, after finishing the program:
 
