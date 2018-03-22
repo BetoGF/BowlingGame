@@ -1,3 +1,7 @@
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player {
 
     private List<Integer> _firstRoll = new ArrayList<Integer>();
@@ -8,7 +12,7 @@ public class Player {
     
     
     // Sets the first roll of a frame
-     public void setFirstRoll(int frame, int score){
+    public void setFirstRoll(int frame, int score) throws IOException{
         _firstRoll.add(score);
     }
     
@@ -18,7 +22,7 @@ public class Player {
     }    
     
     // Sets the second roll of a frame
-    public void setSecondRoll(int frame, int score){
+    public void setSecondRoll(int frame, int score) throws IOException{
         _secondRoll.add(score);
     }
     
