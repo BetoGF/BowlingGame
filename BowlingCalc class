@@ -2,17 +2,58 @@ public class BowlingCalc{
 
    public void bowlFrame(Player player, int frame) {
         int totalScore = 0;
+        int bonusCounter = player.checkBonusCounter();
         
         // Bowl first round
         int score = getScore(totalScore);
         totalScore = totalScore + score;
         player.setFirstRoll(frame, score);
         
-        player.setPlayerScore(score);
-        player.setSecondRoll(frame, score);
-        totalScore = totalScore + score;
-
-  }
+        // Update player score
+        if (bonusCounter == 1 | bonusCounter == 2) {
+            player.setPlayerScore(score + score);
+            bonusCounter -= 1;
+        }
+        else if (bonusCounter == 3) {
+            player.setPlayerScore(score + score + score);
+            bonusCounter -= 2;
+        }
+        else {
+            player.setPlayerScore(score);
+        }
+        
+        if (totalScore == 10){ // Checks for strike 
+            player.setSecondRoll(frame, 0);
+            System.out.println("Strike!");
+        }
+        else {
+            // Gets score for roll 2 if there was no strike
+            score = getScore(totalScore);
+            player.setSecondRoll(frame, score);
+            if (bonusCounter == 1) {
+                player.setPlayerScore(score + score);
+                bonusCounter -= 1;
+            }
+            else {
+                player.setPlayerScore(score);
+            }
+            totalScore = totalScore + score;
+            if (totalScore == 10) { // Checks for spare
+                System.out.println("Spare!");
+            }
+        }
+        
+        if ((player.checkFirstRoll(frame)) == 10) { // Updates bonus counter if the player got a strike
+            bonusCounter += 2;
+        }
+        else if (totalScore == 10) { // Updates bonus counter if the player got a spare
+            bonusCounter += 1;
+        }
+        player.setBonusCounter(bonusCounter);
+        
+    } // end bowlFrame method
+    
+    
   
   public int getScore(int totalScore) {
         
