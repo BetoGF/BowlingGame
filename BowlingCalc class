@@ -1,3 +1,29 @@
 public class BowlingCalc{
 
+   public void bowlFrame(Player player, int frame) {
+        int totalScore = 0;
+        
+        // Bowl first round
+        int score = getScore(totalScore);
+        totalScore = totalScore + score;
+        player.setFirstRoll(frame, score);      
+        player.setPlayerScore(score);
+        player.setSecondRoll(frame, score);
+        totalScore = totalScore + score;
+
+  }
+  
+  public int getScore(int totalScore) {
+        
+            int tempScore = 0;
+            
+            String temp = new BufferedReader(new InputStreamReader(System.in)).readLine();
+            while (temp.equals("")) {
+                System.out.println("Please enter a number.");
+                temp = new BufferedReader(new InputStreamReader(System.in)).readLine();
+            }
+            
+        } 
+       return tempScore;
+    } 
 }
