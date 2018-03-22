@@ -2,9 +2,10 @@ public class Player {
 
     private List<Integer> _firstRoll = new ArrayList<Integer>();
     private List<Integer> _secondRoll = new ArrayList<Integer>();
+    private int _bonusRoll;
     private int _playerScore;
+    private int _bonusCounter;
     
-    int score = 0;
     
     // Sets the first roll of a frame
      public void setFirstRoll(int frame, int score){
@@ -14,8 +15,7 @@ public class Player {
     // Gets the first roll of a frame
     public int checkFirstRoll(int frame) {
         return _firstRoll.get(frame);
-    }
-    
+    }    
     
     // Sets the second roll of a frame
     public void setSecondRoll(int frame, int score){
@@ -27,6 +27,16 @@ public class Player {
         return _secondRoll.get(frame);
     }
     
+    // Sets the bonus roll for the last frame
+    public void setBonusRoll(int score) {
+        _bonusRoll = score;
+    }
+    
+    // Gets the bonus roll of the last frame
+    public int checkBonusRoll() {
+        return _bonusRoll;
+    }
+    
     // Updates the player's total score
     public void setPlayerScore(int score) {
         _playerScore = _playerScore + score;
@@ -35,6 +45,16 @@ public class Player {
     // Gets a player's total score
     public int checkPlayerScore() {
         return _playerScore;
+    }
+    
+    // Sets a player's bonus counter
+    public void setBonusCounter(int bonusCounter) {
+        _bonusCounter = bonusCounter;
+    }
+    
+    // Gets a player's bonus counter
+    public int checkBonusCounter() {
+        return _bonusCounter;
     }
 
 }
