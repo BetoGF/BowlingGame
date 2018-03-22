@@ -3,5 +3,17 @@ public class BowlingGame {
         BowlingCalc game = new BowlingCalc();
      
         Player player = new Player();
+        
+        
+        for (int i=0; i<10; i++) {
+            System.out.println("\nFrame " + (i + 1));
+                game.bowlFrame(player, i);
+        	}
+                
+       public void printScores(Player player) {
+        
+    	System.out.println("total score is: " + player.checkPlayerScore());
+      
+        }         
 
 }
