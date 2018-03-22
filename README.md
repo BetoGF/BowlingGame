@@ -10,3 +10,12 @@ It will creaete an instane of the Player class, which will have the setters and 
 Then it will go into BowlingCalc to make the neccessary calculations and produce a score
 
 Finnaly, the BowlingGame class will show the score.
+
+
+Final edit, after finishing the program:
+
+Java program that takes input from the user and calculates a abowling score from it.
+
+Press enter after every roll of the ball, typing the number of pins knocked.
+
+consists of three classes, BowlingGame class being the main one where the program starts.
