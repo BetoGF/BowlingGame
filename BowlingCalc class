@@ -1,6 +1,10 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class BowlingCalc{
 
-   public void bowlFrame(Player player, int frame) {
+   public void bowlFrame(Player player, int frame) throws IOException {
         int totalScore = 0;
         int bonusCounter = player.checkBonusCounter();
         
@@ -58,7 +62,7 @@ public class BowlingCalc{
     * Special system for scoring the last frame.
     * Includes bonus Roll if the player got a strike or spare.
     */
-    public void bowlLastFrame(Player player, int frame){
+    public void bowlLastFrame(Player player, int frame) throws IOException {
         int totalScore = 0;
         int bonusCounter = player.checkBonusCounter();
         
@@ -125,23 +129,31 @@ public class BowlingCalc{
         }
         
         System.out.println("total score is " + player.checkPlayerScore());
+        
     }
     
-       
-  
-  public int getScore(int totalScore) {
-        
-            int tempScore = 0;
-            
-            String temp = new BufferedReader(new InputStreamReader(System.in)).readLine();
+   /*
+    * Gets the bowling score from the player
+    */      
+  public int getScore(int totalScore) throws IOException{
+        boolean validScore = false;
+        int tempScore = 0;
+        while (validScore == false) {
+               String temp = new BufferedReader(new InputStreamReader(System.in)).readLine();
             while (temp.equals("")) {
                 System.out.println("Please enter a number.");
                 temp = new BufferedReader(new InputStreamReader(System.in)).readLine();
             }
-            
+            tempScore = Integer.parseInt(temp);
+            if ((tempScore < 0) | (tempScore + totalScore > 10) ){
+                System.out.println("Invalid number. Try again.");
+            }
+            else {
+                validScore = true;
+            }            
         } 
        return tempScore;
-    } 
+    } // end GetScore method
     
     /*
     * Gets the bowling scores for the bonus round
