@@ -1,35 +1,36 @@
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BowlingGame {
-
+	
+	public static int[] frameScore = new int[10];
 
  public static void main(String[] args) throws IOException
  {
-        final BowlingCalc game = new BowlingCalc();
+        final BowlingCalc game = new BowlingCalc();               
      
         Player player = new Player();
         
+        
+        
        // The game begins!
-
        // The final frame is executed separately because of special scoring requirements.
+        
         
         for (int i=0; i<9; i++) {
             System.out.println("\nFrame " + (i + 1));
                 game.bowlFrame(player, i);
-        	}
+                frameScore[i] = player.checkPlayerScore();
+                
+        }
                 
         // Play final frame
 
        System.out.println("\nFinal Frame");
-            game.bowlLastFrame(player, 9);                     
+            game.bowlLastFrame(player, 9);    
+            frameScore[9] = player.checkPlayerScore();
     }       
-    
-       //Print the Score         
-
-       public void printScores(Player player) {
-        
-    	     System.out.println("total score is: " + player.checkPlayerScore());
-           
-    }
+          
 
 }
