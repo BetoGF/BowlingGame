@@ -2,12 +2,13 @@ public class Player {
 
     private List<Integer> _firstRoll = new ArrayList<Integer>();
     private List<Integer> _secondRoll = new ArrayList<Integer>();
+    private int _playerScore;
     
     int score = 0;
     
     // Sets the first roll of a frame
      public void setFirstRoll(int frame, int score){
-       _firstRoll += score;
+        _firstRoll.add(score);
     }
     
     // Gets the first roll of a frame
@@ -18,12 +19,22 @@ public class Player {
     
     // Sets the second roll of a frame
     public void setSecondRoll(int frame, int score){
-        _secondRoll.add += score;
+        _secondRoll.add(score);
     }
     
     // Gets the second roll of a frame
     public int checkSecondRoll(int frame) {
         return _secondRoll.get(frame);
+    }
+    
+    // Updates the player's total score
+    public void setPlayerScore(int score) {
+        _playerScore = _playerScore + score;
+    }
+    
+    // Gets a player's total score
+    public int checkPlayerScore() {
+        return _playerScore;
     }
 
 }
